@@ -32,7 +32,7 @@ public class CircularTaskList {
 		}
 	}
 	public void addAtPosition(int id,String name,int priority,String dueDate,int k) {
-		Task newTask=new Task(id,name,priority,dueDate) 
+		Task newTask=new Task(id,name,priority,dueDate) ;
 		if(k<=1) {
 			addAtBegining(id, name, priority, dueDate);
 			return;
