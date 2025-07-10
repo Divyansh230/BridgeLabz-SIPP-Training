@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6affba14-9238-4a75-bd27-f37fdd15c858" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/StudentAgeSorter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../LinkedList/ReservationRailways/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../LinkedList/ReservationRailways/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../LinkedList/ReservationRailways/TicketNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/../LinkedList/ReservationRailways/TicketNode.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../LinkedList/ReservationRailways/TicketReservationSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/../LinkedList/ReservationRailways/TicketReservationSystem.java" afterDir="false" />
@@ -14,6 +15,10 @@
       <change beforePath="$PROJECT_DIR$/../LinkedList/TextEditor/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../LinkedList/TextEditor/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../LinkedList/TextEditor/TextEditor.java" beforeDir="false" afterPath="$PROJECT_DIR$/../LinkedList/TextEditor/TextEditor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../LinkedList/TextEditor/TextState.java" beforeDir="false" afterPath="$PROJECT_DIR$/../LinkedList/TextEditor/TextState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ExamScoreSorter.java" beforeDir="false" afterPath="$PROJECT_DIR$/ExamScoreSorter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProductPriceSorter.java" beforeDir="false" afterPath="$PROJECT_DIR$/ProductPriceSorter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SalaryDemandSorter.java" beforeDir="false" afterPath="$PROJECT_DIR$/SalaryDemandSorter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Stack_And_Queue/GasStation.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Stack_And_Queue/GasStation.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -53,6 +58,8 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;Application.BookSorter.executor&quot;: &quot;Run&quot;,
+    &quot;Application.EmployeeIdSorter.executor&quot;: &quot;Run&quot;,
     &quot;Application.StudentMarksSorter.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
@@ -104,11 +111,26 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1752127867964</updated>
-      <workItem from="1752127869289" duration="307000" />
+      <workItem from="1752127869289" duration="1098000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/BookSorter.java</url>
+          <line>63</line>
+          <properties class="BookSorter" method="main">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
