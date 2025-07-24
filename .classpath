@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<classpath>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry excluding="Sorting_Algorithms/|LinkedList/InventoryManagementSystem/" kind="src" path=""/>
-	<classpathentry kind="src" path="LinkedList/InventoryManagementSystem"/>
-	<classpathentry kind="src" path="Sorting_Algorithms"/>
-	<classpathentry kind="output" path="Stack_And_Queue/out/production/Stack_And_Queue"/>
-</classpath>
