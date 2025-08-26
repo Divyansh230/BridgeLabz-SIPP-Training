@@ -1,0 +1,23 @@
+package Regex;
+
+//package Regex;
+
+import java.util.Scanner;
+import java.util.regex.Pattern;
+
+public class LicensePlateValidator {
+    private static final Pattern LICENSE_PLATE = Pattern.compile("^[A-Z]{2}[0-9]{4}$");
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String input = sc.nextLine().trim();
+
+        if (LICENSE_PLATE.matcher(input).matches()) {
+            System.out.println(input + " → ✅ Valid License Plate");
+        } else {
+            System.out.println(input + " → ❌ Invalid License Plate");
+        }
+        sc.close();
+    }
+}
+
