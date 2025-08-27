@@ -1,0 +1,58 @@
+CLASS User
+    ATTRIBUTES:
+        username
+        password
+
+    METHOD login(inputUsername, inputPassword)
+        IF inputUsername == username AND inputPassword == password THEN
+            RETURN "Login Successful"
+        ELSE
+            RETURN "Invalid Credentials"
+
+
+CLASS Student EXTENDS User
+    ATTRIBUTES:
+        enrolledCourses   // list of courses student is enrolled in
+        isRegistered      // boolean flag
+
+    METHOD login(inputUsername, inputPassword)
+        CALL parent.login(inputUsername, inputPassword) -> result
+        IF result == "Login Successful" AND isRegistered == TRUE AND enrolledCourses NOT EMPTY THEN
+            DISPLAY "Welcome Student! You can now take exams."
+        ELSE
+            DISPLAY "Access Denied: Student not registered or not enrolled."
+
+
+CLASS Admin EXTENDS User
+    ATTRIBUTES:
+        hasAdminPrivileges  // boolean flag
+
+    METHOD login(inputUsername, inputPassword)
+        CALL parent.login(inputUsername, inputPassword) -> result
+        IF result == "Login Successful" AND hasAdminPrivileges == TRUE THEN
+            DISPLAY "Welcome Admin! You can manage exams."
+        ELSE
+            DISPLAY "Access Denied: Not an admin or invalid credentials."
+
+
+// -------------------- Example Run --------------------
+
+MAIN PROGRAM
+    CREATE student1 AS Student
+    student1.username = "john123"
+    student1.password = "pass123"
+    student1.isRegistered = TRUE
+    student1.enrolledCourses = ["Math", "Science"]
+
+    CREATE admin1 AS Admin
+    admin1.username = "admin007"
+    admin1.password = "secure999"
+    admin1.hasAdminPrivileges = TRUE
+
+    // Student login attempt
+    INPUT usernameInput, passwordInput
+    CALL student1.login(usernameInput, passwordInput)
+
+    // Admin login attempt
+    INPUT adminUserInput, adminPassInput
+    CALL admin1.login(adminUserInput, adminPassInput)

@@ -1,0 +1,96 @@
+CLASS Ticket
+    ATTRIBUTES:
+        movieName
+        seatNumber
+        price
+        bookingStatus   // "Booked" or "Cancelled"
+
+    METHOD __init__(movieName, seatNumber, price)
+        SET self.movieName = movieName
+        SET self.seatNumber = seatNumber
+        SET self.price = price
+        SET self.bookingStatus = "Booked"
+
+    METHOD cancelTicket()
+        SET bookingStatus = "Cancelled"
+
+
+CLASS Theatre
+    ATTRIBUTES:
+        name
+        movieSchedule        // dictionary: movie -> showtime
+        availableSeats       // dictionary: movie -> list of seats
+        issuedTickets        // list of Ticket objects
+
+    METHOD __init__(name)
+        SET self.name = name
+        INITIALIZE movieSchedule = {}
+        INITIALIZE availableSeats = {}
+        INITIALIZE issuedTickets = []
+
+    METHOD addMovie(movieName, showtime, seatsList)
+        movieSchedule[movieName] = showtime
+        availableSeats[movieName] = seatsList
+
+    METHOD bookTicket(movieName, seatNumber, price)
+        IF seatNumber IN availableSeats[movieName] THEN
+            REMOVE seatNumber FROM availableSeats[movieName]
+            CREATE newTicket AS Ticket(movieName, seatNumber, price)
+            ADD newTicket TO issuedTickets
+            RETURN newTicket
+        ELSE
+            RETURN "Seat Not Available"
+
+    METHOD cancelTicket(ticket)
+        IF ticket IN issuedTickets AND ticket.bookingStatus == "Booked" THEN
+            CALL ticket.cancelTicket()
+            ADD ticket.seatNumber BACK TO availableSeats[ticket.movieName]
+            RETURN "Ticket Cancelled Successfully"
+        ELSE
+            RETURN "Invalid or Already Cancelled Ticket"
+
+
+CLASS Customer
+    ATTRIBUTES:
+        name
+        bookedTickets   // list of Ticket objects
+
+    METHOD __init__(name)
+        SET self.name = name
+        INITIALIZE bookedTickets = []
+
+    METHOD browseMovies(theatre)
+        DISPLAY theatre.movieSchedule
+
+    METHOD bookTicket(theatre, movieName, seatNumber, price)
+        CALL theatre.bookTicket(movieName, seatNumber, price) -> result
+        IF result IS A Ticket THEN
+            ADD result TO bookedTickets
+            DISPLAY name + " booked " + result.movieName + " at seat " + result.seatNumber
+        ELSE
+            DISPLAY result
+
+    METHOD cancelTicket(theatre, ticket)
+        CALL theatre.cancelTicket(ticket) -> result
+        IF result == "Ticket Cancelled Successfully" THEN
+            REMOVE ticket FROM bookedTickets
+        DISPLAY result
+
+
+// ---------------- Example Run ----------------
+
+MAIN PROGRAM
+    CREATE theatre1 AS Theatre("PVR Cinema")
+    CALL theatre1.addMovie("Avengers: Endgame", "6 PM", ["A10", "A11", "A12", "A13"])
+
+    CREATE customer1 AS Customer("Ravi")
+
+    // Step 1: Browse movies
+    CALL customer1.browseMovies(theatre1)
+
+    // Step 2: Book a ticket
+    CALL customer1.bookTicket(theatre1, "Avengers: Endgame", "A12", 300)
+
+    // Step 3: Cancel the ticket
+    ticketToCancel = customer1.bookedTickets[0]
+    CALL customer1.cancelTicket(theatre1, ticketToCancel)

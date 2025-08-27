@@ -1,0 +1,64 @@
+CLASS AttendanceSystem
+    ATTRIBUTES:
+        attendance[students][days]   // 2D array of 'P' or 'A'
+        numStudents
+        numDays
+
+    METHOD __init__(students, days)
+        numStudents = students
+        numDays = days
+        INITIALIZE attendance[students][days] WITH 'A'   // default absent
+
+    METHOD markAttendance(studentID, day, status)
+        // status = 'P' or 'A'
+        IF studentID < numStudents AND day <= numDays THEN
+            attendance[studentID][day-1] = status
+            RETURN "Attendance Marked"
+        ELSE
+            RETURN "Invalid Input"
+
+    METHOD updateAttendance(studentID, day, newStatus)
+        IF studentID < numStudents AND day <= numDays THEN
+            attendance[studentID][day-1] = newStatus
+            RETURN "Attendance Updated"
+        ELSE
+            RETURN "Invalid Input"
+
+    METHOD generateReport(studentID)
+        presentCount = 0
+        FOR day FROM 0 TO numDays-1
+            IF attendance[studentID][day] == 'P' THEN
+                presentCount = presentCount + 1
+        PRINT "Student " + studentID + " was present for " + presentCount + " days out of " + numDays
+
+
+    METHOD displayAttendance(studentID)
+        PRINT "Attendance for Student " + studentID + ": "
+        FOR day FROM 0 TO numDays-1
+            PRINT attendance[studentID][day] + " "
+        PRINT newline
+
+
+// ---------------- Example Run ----------------
+
+MAIN PROGRAM
+    CREATE system AS AttendanceSystem(3, 30)   // 3 students, 30 days in the month
+
+    // Step 1: Mark Student 1’s first week
+    CALL system.markAttendance(0, 1, 'P')
+    CALL system.markAttendance(0, 2, 'P')
+    CALL system.markAttendance(0, 3, 'A')
+    CALL system.markAttendance(0, 4, 'P')
+    CALL system.markAttendance(0, 5, 'P')
+    CALL system.markAttendance(0, 6, 'P')
+    CALL system.markAttendance(0, 7, 'A')
+
+    CALL system.displayAttendance(0)
+
+    // Step 2: Teacher updates day 3 (A → P)
+    CALL system.updateAttendance(0, 3, 'P')
+
+    CALL system.displayAttendance(0)
+
+    // Step 3: Generate monthly report for Student 1
+    CALL system.generateReport(0)

@@ -1,0 +1,47 @@
+CLASS WordFrequencyAnalyzer
+    METHOD analyzeText(paragraph)
+        // Step 1: Normalize text
+        text = paragraph.toLowerCase()
+        text = remove punctuation from text
+
+        // Step 2: Split into words
+        words = text.split(" ")
+
+        // Step 3: Count word frequencies using Map
+        wordCountMap = new HashMap<String, Integer>()
+
+        FOR each word in words
+            IF wordCountMap contains word THEN
+                wordCountMap.put(word, wordCountMap.get(word) + 1)
+            ELSE
+                wordCountMap.put(word, 1)
+
+        // Step 4: Sort by frequency using Stream API
+        sortedList = wordCountMap.entrySet()
+                      .stream()
+                      .sorted(by value descending, then by key ascending)
+                      .collect(toList)
+
+        // Step 5: Display results
+        FOR each entry in sortedList
+            PRINT entry.key + " → " + entry.value
+
+
+// ---------------- Example Run ----------------
+
+MAIN PROGRAM
+    paragraph = "The news today is about the rise in technology trends."
+
+    CREATE analyzer AS WordFrequencyAnalyzer()
+    CALL analyzer.analyzeText(paragraph)
+
+// Expected Output:
+    the → 2
+    about → 1
+    in → 1
+    is → 1
+    news → 1
+    rise → 1
+    technology → 1
+    today → 1
+    trends → 1

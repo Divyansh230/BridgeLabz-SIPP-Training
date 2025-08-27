@@ -1,0 +1,99 @@
+CLASS Node
+    ATTRIBUTES:
+        stopName
+        next   // pointer to next Node
+
+    METHOD __init__(stopName)
+        self.stopName = stopName
+        self.next = NULL
+
+
+CLASS BusRoute
+    ATTRIBUTES:
+        head   // starting bus stop
+
+    METHOD __init__()
+        head = NULL
+
+    METHOD addStop(stopName)
+        CREATE newNode = Node(stopName)
+        IF head == NULL THEN
+            head = newNode
+        ELSE
+            temp = head
+            WHILE temp.next != NULL
+                temp = temp.next
+            temp.next = newNode
+
+    METHOD insertStop(afterStop, newStop)
+        temp = head
+        WHILE temp != NULL
+            IF temp.stopName == afterStop THEN
+                CREATE newNode = Node(newStop)
+                newNode.next = temp.next
+                temp.next = newNode
+                RETURN "Stop Inserted"
+            temp = temp.next
+        RETURN "Stop Not Found"
+
+    METHOD removeStop(stopName)
+        temp = head
+        prev = NULL
+        WHILE temp != NULL
+            IF temp.stopName == stopName THEN
+                IF prev == NULL THEN
+                    head = temp.next      // removing first node
+                ELSE
+                    prev.next = temp.next
+                RETURN "Stop Removed"
+            prev = temp
+            temp = temp.next
+        RETURN "Stop Not Found"
+
+    METHOD searchStop(stopName)
+        temp = head
+        WHILE temp != NULL
+            IF temp.stopName == stopName THEN
+                RETURN TRUE
+            temp = temp.next
+        RETURN FALSE
+
+    METHOD displayRoute()
+        temp = head
+        WHILE temp != NULL
+            PRINT temp.stopName + " → "
+            temp = temp.next
+        PRINT "END"
+
+
+// ---------------- Example Run ----------------
+
+MAIN PROGRAM
+    CREATE route AS BusRoute()
+
+    // Initial route
+    CALL route.addStop("Depot")
+    CALL route.addStop("Main Street")
+    CALL route.addStop("City Mall")
+    CALL route.addStop("Hospital")
+    CALL route.addStop("Airport")
+
+    DISPLAY "Initial Route:"
+    CALL route.displayRoute()
+
+    // Insert University after City Mall
+    CALL route.insertStop("City Mall", "University")
+    DISPLAY "After inserting University:"
+    CALL route.displayRoute()
+
+    // Remove Hospital
+    CALL route.removeStop("Hospital")
+    DISPLAY "After removing Hospital:"
+    CALL route.displayRoute()
+
+    // Search for Airport
+    result = route.searchStop("Airport")
+    IF result == TRUE
+        PRINT "Airport is in the route."
+    ELSE
+        PRINT "Airport not found."
